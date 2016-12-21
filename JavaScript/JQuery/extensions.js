@@ -50,18 +50,14 @@ jQuery.fn.extend({
 		
 	},
 
-	inputDecimal:function(maxInt, maxDecimal){
-		var pattern = /((\d+)((\.\d{0,2})?))$/;
-		console.log(pattern);
-		var expression = new RegExp(pattern);
+	inputDecimal:function(){
 		$(this).keypress(function(event){
-			var keynum = window.event ? window.event.keyCode : e.which;
-			var decimal = $(this).val();
-			if(decimal === ""){
-				decimal = String.fromCharCode(keynum);
-			}
-			console.log(expression.test(decimal));
-			return expression.test(decimal);
+			if (event.which != 46 && (event.which < 47 || event.which > 59)){
+        		event.preventDefault();
+        		if ((event.which == 46) && ($(this).indexOf('.') != -1)) {
+            		event.preventDefault();
+        		}
+    		}
 		});
 	}	
     
